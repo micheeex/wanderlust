@@ -204,7 +204,7 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
 .visited-nav-left,.visited-nav-right{display:flex;gap:24px;font-size:10px;letter-spacing:0.18em;color:rgba(30,26,20,0.45);text-transform:uppercase;font-weight:300;align-items:center;}
 .visited-nav span{cursor:pointer;transition:color 0.2s;}
 .visited-nav span:hover{color:rgba(30,26,20,0.85);}
-.v-nav-add{width:24px;height:24px;border:1px solid rgba(30,26,20,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s;color:rgba(30,26,20,0.4);font-size:15px;line-height:1;}
+.v-nav-add{width:24px;height:24px;border:1px solid rgba(30,26,20,0.25);border-radius:50%;display:none;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s;color:rgba(30,26,20,0.4);font-size:15px;line-height:1;}
 .v-nav-add:hover{border-color:rgba(30,26,20,0.6);color:rgba(30,26,20,0.8);}
 
 /* Paper plane header */
@@ -949,7 +949,11 @@ function showPage(name){
     document.getElementById(p+'-page').classList.toggle('hidden', p!==name);
   });
   if(name==='visited') buildCountryLists();
-  if(name==='itineraries') buildItinerariesPage();
+  if(name==='itineraries'){
+    buildItinerariesPage();
+    const itinAdd = document.getElementById('itin-add-btn');
+    if(itinAdd) itinAdd.style.display = isLoggedIn ? 'flex' : 'none';
+  }
   if(name==='bucket') buildBucketGrid();
 }
 
