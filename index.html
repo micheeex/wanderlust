@@ -29,9 +29,10 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
 .nav-left span:hover,.nav-right span:hover{color:rgba(245,245,240,0.7);}
 .nav-add{width:26px;height:26px;border:1px solid rgba(245,245,240,0.35);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s;color:rgba(245,245,240,0.55);font-size:16px;line-height:1;}
 .nav-add:hover{border-color:rgba(245,245,240,0.8);color:rgba(245,245,240,0.9);}
-.login-btn{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;padding:6px 14px;border:1px solid rgba(245,245,240,0.4);color:rgba(245,245,240,0.7);background:none;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s;border-radius:2px;}
-.login-btn:hover{background:rgba(245,245,240,0.1);color:#F5F5F0;}
-.login-btn.logged-in{border-color:rgba(212,184,150,0.5);color:#D4B896;}
+.login-btn{background:none;border:none;cursor:pointer;color:rgba(245,245,240,0.6);transition:color 0.2s;padding:4px;display:flex;align-items:center;justify-content:center;}
+.login-btn:hover{color:#F5F5F0;}
+.login-btn.logged-in{color:#D4B896;}
+.login-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
 /* Login modal */
 .login-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:300;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.25s;}
 .login-overlay.open{opacity:1;pointer-events:all;}
@@ -249,7 +250,9 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
     </div>
     <div class="nav-right">
       <div class="nav-add" id="home-add-btn" style="display:none" onclick="openModal()" title="Add entry">+</div>
-      <button class="login-btn" id="home-login-btn" onclick="openLogin()">Login</button>
+      <button class="login-btn" id="home-login-btn" onclick="openLogin()" title="Login">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      </button>
     </div>
   </nav>
   <div class="title-block"
@@ -509,14 +512,15 @@ function buildPolaroids(){
 
 function updateStats(){
   const count = visited.size;
-  const pct = ((count/TOTAL)*100).toFixed(2);
+  const pct = Math.round((count/TOTAL)*100);
   document.getElementById('v-countries-num').textContent = count;
   document.getElementById('v-remaining-num').textContent = TOTAL - count;
   document.getElementById('v-percent-num').textContent = pct + '%';
   document.getElementById('visited-label').textContent = `Visited — ${count}`;
   document.getElementById('remaining-label').textContent = `Not Yet Visited — ${TOTAL - count}`;
   document.getElementById('countries-num').textContent = count;
-  document.getElementById('percent-num').textContent = pct;
+  const pctEl = document.getElementById('percent-num');
+  if(pctEl) pctEl.textContent = pct;
 }
 
 function buildCountryLists(){
@@ -839,8 +843,15 @@ function logout(){
 
 function updateAuthUI(){
   // Home login btn
+  const ICON_LOCK = `<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>`;
+  const ICON_UNLOCK = `<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/><line x1="18" y1="2" x2="22" y2="6"/><line x1="22" y1="2" x2="18" y2="6"/></svg>`;
   const hBtn = document.getElementById('home-login-btn');
-  if(hBtn){ hBtn.textContent = isLoggedIn ? 'Logout' : 'Login'; hBtn.onclick = isLoggedIn ? logout : openLogin; hBtn.classList.toggle('logged-in', isLoggedIn); }
+  if(hBtn){
+    hBtn.innerHTML = isLoggedIn ? ICON_UNLOCK : ICON_LOCK;
+    hBtn.title = isLoggedIn ? 'Logout' : 'Login';
+    hBtn.onclick = isLoggedIn ? logout : openLogin;
+    hBtn.classList.toggle('logged-in', isLoggedIn);
+  }
   // + buttons — only visible when logged in
   const homeAdd = document.getElementById('home-add-btn');
   if(homeAdd) homeAdd.style.display = isLoggedIn ? 'flex' : 'none';
@@ -1026,8 +1037,10 @@ function initPlaneAnimation(){
 // Init
 loadAllData().then(() => {
   updateAuthUI();
-  buildOdometer('countries-num', 0, 1800, 1600);
-  buildOdometer('percent-num', 0, 1800, 1900);
+  const count = visited.size;
+  const pct = Math.round((count/TOTAL)*100);
+  buildOdometer('countries-num', count, 1800, 1600);
+  buildOdometer('percent-num', pct, 1800, 1900);
 });
 setTimeout(initPlaneAnimation, 100);
 </script>
