@@ -725,9 +725,26 @@ async function saveEntryDB(entry){
   });
 }
 
+// 1. Updated Database Function (Added return so the code waits properly)
 async function deleteEntryDB(id){
-  await supa.del('travel_entries', `?id=eq.${id}`);
+  return await supa.del('travel_entries', `?id=eq.${id}`);
 }
+
+// 2. Updated Handler (No pop-up, properly awaits the database)
+async function deleteEntry(id) {
+  try {
+    // Wait completely for the database to remove it
+    await deleteEntryDB(id);
+    
+    // Refresh the page to show the updated list
+    location.reload(); 
+    
+  } catch (error) {
+    console.error("Failed to delete entry:", error);
+    alert("Could not delete entry. Please check your console logs.");
+  }
+}
+
 
 async function updateEntryDB(entry){
   await supa.patch('travel_entries', {
