@@ -8,23 +8,19 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-serif;overflow:hidden;}
-
-/* ── PAGES ── */
 .page{position:fixed;inset:0;transition:opacity 0.5s ease,transform 0.5s ease;}
 .page.hidden{opacity:0;pointer-events:none;transform:translateY(12px);}
-
-/* ── HERO ── */
 .hero{display:flex;flex-direction:column;justify-content:center;align-items:center;overflow:hidden;}
-.bg-base{position:absolute;inset:0;  background:#1a1a14;}
+.bg-base{position:absolute;inset:0;background:#1a1a14;}
 .bg-photo{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1770929356906-765cd4e21dd1?q=80&w=1336&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;opacity:0.4;}
 .grain{position:absolute;inset:0;opacity:0.55;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");background-size:180px 180px;mix-blend-mode:overlay;}
 .light-amber{position:absolute;bottom:-10%;right:-5%;width:55%;height:60%;background:radial-gradient(ellipse at center,rgba(180,100,20,0.22) 0%,transparent 70%);pointer-events:none;}
 .light-sage{position:absolute;top:-10%;left:-10%;width:60%;height:55%;background:radial-gradient(ellipse at center,rgba(80,100,70,0.18) 0%,transparent 70%);pointer-events:none;}
 .scanlines{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.04) 3px,rgba(0,0,0,0.04) 4px);pointer-events:none;}
 
-/* ── NAV ── */
+/* NAV */
 .nav{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:28px 36px;z-index:10;}
-.nav-left,.nav-right{display:flex;gap:28px;font-size:10px;letter-spacing:0.18em;color:rgba(245,245,240,0.55);text-transform:uppercase;font-weight:300;align-items:center;}
+.nav-left,.nav-right{display:flex;gap:28px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:300;align-items:center;}
 .nav-left span,.nav-right span{cursor:pointer;transition:color 0.3s;color:#F5F5F0;font-weight:700;letter-spacing:0.15em;}
 .nav-left span:hover,.nav-right span:hover{color:rgba(245,245,240,0.7);}
 .nav-add{width:26px;height:26px;border:1px solid rgba(245,245,240,0.35);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s;color:rgba(245,245,240,0.55);font-size:16px;line-height:1;}
@@ -33,7 +29,6 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
 .login-btn:hover{color:#F5F5F0;}
 .login-btn.logged-in{color:#D4B896;}
 .login-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
-/* Login modal */
 .login-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:300;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.25s;}
 .login-overlay.open{opacity:1;pointer-events:all;}
 .login-modal{background:#1e1e16;border:0.5px solid rgba(245,245,240,0.15);border-radius:12px;width:min(360px,90vw);padding:36px;}
@@ -45,18 +40,14 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
 .login-error{font-size:10px;color:#c0392b;letter-spacing:0.1em;margin-bottom:12px;display:none;}
 .login-submit{width:100%;padding:11px;background:rgba(212,184,150,0.1);border:0.5px solid rgba(212,184,150,0.3);border-radius:6px;color:#D4B896;font-family:'Inter',sans-serif;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
 .login-submit:hover{background:rgba(212,184,150,0.18);}
-/* Light-page login btn */
-.light-login-btn{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;padding:5px 12px;border:1px solid rgba(30,26,20,0.2);color:rgba(30,26,20,0.45);background:none;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s;border-radius:2px;}
-.light-login-btn:hover{border-color:rgba(30,26,20,0.5);color:#1e1a14;}
-.light-login-btn.logged-in{border-color:rgba(192,57,43,0.3);color:#c0392b;}
 
-/* ── TITLE BLOCK ── */
+/* TITLE */
 .title-block{position:relative;z-index:5;display:flex;flex-direction:column;align-items:flex-start;line-height:1;margin-bottom:48px;}
 .word-wander{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(64px,13vw,128px);letter-spacing:-0.04em;color:#F5F5F0;text-transform:uppercase;display:block;opacity:0;animation:fadeSlideDown 1s cubic-bezier(.22,1,.36,1) 0.2s forwards;position:relative;z-index:2;}
-  .word-lust{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(52px,10.5vw,104px);color:#D4B896;letter-spacing:0.02em;display:block;margin-top:clamp(-60px,-12vw,-48px);margin-left:clamp(240px,48.5vw,480px);position:relative;z-index:3;opacity:0;animation:fadeSlideDown 1s cubic-bezier(.22,1,.36,1) 0.5s forwards;}
+.word-lust{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(52px,10.5vw,104px);color:#D4B896;letter-spacing:0.02em;display:block;margin-top:clamp(-60px,-12vw,-48px);margin-left:clamp(240px,48.5vw,480px);position:relative;z-index:3;opacity:0;animation:fadeSlideDown 1s cubic-bezier(.22,1,.36,1) 0.5s forwards;}
 @keyframes fadeSlideDown{from{opacity:0;transform:translateY(-16px);}to{opacity:1;transform:translateY(0);}}
 
-/* ── STATS ── */
+/* STATS */
 .stats-row{position:relative;z-index:5;display:flex;gap:clamp(32px,6vw,72px);align-items:flex-end;opacity:0;animation:fadeIn 1s ease 1.4s forwards;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 .stat-item{display:flex;align-items:baseline;gap:10px;}
@@ -66,12 +57,11 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
 .odo-digit{display:inline-flex;flex-direction:column;overflow:hidden;height:1em;position:relative;}
 .odo-reel{display:flex;flex-direction:column;}
 .odo-char{display:block;height:1em;line-height:1;}
-
 .corner-bl{position:absolute;bottom:32px;left:36px;font-size:9px;letter-spacing:0.15em;color:rgba(245,245,240,0.4);text-transform:uppercase;font-weight:300;line-height:1.6;z-index:10;}
 .corner-br{position:absolute;bottom:32px;right:36px;font-size:9px;letter-spacing:0.2em;color:rgba(245,245,240,0.4);text-transform:uppercase;font-weight:300;z-index:10;}
 .rule{position:absolute;z-index:5;width:clamp(160px,30vw,280px);height:1px;background:linear-gradient(90deg,rgba(245,245,240,0.3),transparent);top:50%;left:50%;transform:translate(-50%,-180%);opacity:0;animation:fadeIn 1.2s ease 1.8s forwards;}
 
-/* ── MODAL ── */
+/* MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:100;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;}
 .modal-overlay.open{opacity:1;pointer-events:all;}
 .modal{background:#1e1e16;border:0.5px solid rgba(245,245,240,0.15);border-radius:12px;width:min(480px,90vw);max-height:80vh;overflow-y:auto;padding:32px;}
@@ -92,7 +82,7 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
 .modal-submit{width:100%;margin-top:8px;padding:12px;background:rgba(212,184,150,0.1);border:0.5px solid rgba(212,184,150,0.3);border-radius:6px;color:#D4B896;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
 .modal-submit:hover{background:rgba(212,184,150,0.18);}
 
-/* ── ITINERARIES PAGE ── */
+/* ITINERARIES */
 #itineraries-page{background:#ffffff;overflow-y:auto;}
 .itin-nav{position:sticky;top:0;z-index:20;background:#ffffff;border-bottom:0.5px solid rgba(0,0,0,0.08);display:flex;justify-content:space-between;align-items:center;padding:18px 36px;}
 .itin-nav-left,.itin-nav-right{display:flex;gap:24px;font-size:10px;letter-spacing:0.18em;color:rgba(30,26,20,0.45);text-transform:uppercase;font-weight:300;align-items:center;}
@@ -100,8 +90,6 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
 .itin-nav span:hover{color:rgba(30,26,20,0.85);}
 .itin-content{padding:48px 36px 80px;max-width:900px;margin:0 auto;}
 .itin-page-title{font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(30,26,20,0.35);margin-bottom:36px;font-weight:300;}
-
-/* Country group */
 .country-group{margin-bottom:12px;}
 .country-group-header{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:0.5px solid rgba(0,0,0,0.12);cursor:pointer;user-select:none;}
 .country-group-name{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(28px,5vw,48px);letter-spacing:-0.03em;color:#1e1a14;text-transform:uppercase;}
@@ -109,7 +97,7 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
 .country-group-entries{display:none;padding:24px 0 8px;}
 .country-group-entries.open{display:block;}
 
-/* Postcard */
+/* POSTCARD */
 .postcard{display:flex;background:#fff;border:0.5px solid rgba(0,0,0,0.1);margin-bottom:16px;min-height:180px;overflow:hidden;transition:box-shadow 0.2s;}
 .postcard:hover{box-shadow:0 6px 24px rgba(0,0,0,0.1);}
 .postcard-left{width:200px;min-height:180px;flex-shrink:0;background:#d6d0c4;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;cursor:pointer;}
@@ -118,7 +106,7 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
 .pc-upload-hint span{font-size:8px;letter-spacing:0.16em;text-transform:uppercase;color:#fff;margin-top:6px;}
 .pc-upload-hint svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
 .postcard-left img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
-.postcard-left .pc-type-badge{position:absolute;top:10px;left:10px;font-size:8px;letter-spacing:0.14em;text-transform:uppercase;background:rgba(255,255,255,0.92);color:#1e1a14;padding:3px 7px;z-index:2;}
+.pc-type-badge{position:absolute;top:10px;left:10px;font-size:8px;letter-spacing:0.14em;text-transform:uppercase;background:rgba(255,255,255,0.92);color:#1e1a14;padding:3px 7px;z-index:2;}
 .postcard-right{flex:1;padding:24px 28px;display:flex;flex-direction:column;justify-content:space-between;border-left:0.5px solid rgba(0,0,0,0.08);}
 .pc-eyebrow{font-size:8px;letter-spacing:0.22em;text-transform:uppercase;color:#c0392b;margin-bottom:8px;font-weight:400;}
 .pc-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(18px,2.5vw,26px);letter-spacing:-0.02em;color:#1e1a14;text-transform:uppercase;line-height:1.1;margin-bottom:12px;}
@@ -139,11 +127,10 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
 .pc-map-link{font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:#c0392b;text-decoration:none;flex-shrink:0;white-space:nowrap;}
 .pc-map-link:hover{text-decoration:underline;}
 
-/* Detail modal */
+/* DETAIL MODAL */
 .detail-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.25s;}
 .detail-overlay.open{opacity:1;pointer-events:all;}
-.detail-modal{background:#1e1e16;border:0.5px solid rgba(245,245,240,0.15);border-radius:12px;width:min(560px,92vw);max-height:80vh;overflow-y:auto;padding:36px;}
-.detail-modal.light{background:#f5f2ec;border-color:rgba(0,0,0,0.1);}
+.detail-modal{background:#f5f2ec;border:0.5px solid rgba(0,0,0,0.1);border-radius:12px;width:min(560px,92vw);max-height:80vh;overflow-y:auto;padding:36px;}
 .detail-close{float:right;background:none;border:none;font-size:20px;cursor:pointer;color:rgba(30,26,20,0.4);line-height:1;margin-top:-4px;}
 .detail-close:hover{color:#1e1a14;}
 .detail-eyebrow{font-size:8px;letter-spacing:0.22em;text-transform:uppercase;color:#c0392b;margin-bottom:8px;}
@@ -157,6 +144,7 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
 .detail-body a:hover{text-decoration:underline;}
 .detail-field{margin-bottom:14px;}
 .detail-field-label{font-size:8px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(30,26,20,0.35);margin-bottom:4px;}
+.detail-field-value{font-size:13px;color:#1e1a14;font-weight:300;line-height:1.6;word-break:break-all;}
 .detail-actions{display:flex;justify-content:flex-end;margin-top:20px;padding-top:16px;border-top:0.5px solid rgba(0,0,0,0.1);}
 .detail-edit-btn{background:none;border:0.5px solid rgba(30,26,20,0.25);border-radius:4px;padding:7px 16px;font-family:'Inter',sans-serif;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(30,26,20,0.5);cursor:pointer;transition:all 0.2s;}
 .detail-edit-btn:hover{border-color:#1e1a14;color:#1e1a14;}
@@ -169,7 +157,7 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
 .edit-save-btn:hover{background:rgba(192,57,43,0.15);}
 .itin-empty{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(30,26,20,0.25);padding:48px 0;text-align:center;}
 
-/* ── BUCKET LIST PAGE ── */
+/* BUCKET LIST */
 #bucket-page{background:#fff;overflow-y:auto;}
 .bucket-nav{position:sticky;top:0;z-index:20;background:#fff;border-bottom:0.5px solid rgba(0,0,0,0.08);display:flex;justify-content:space-between;align-items:center;padding:18px 36px;}
 .bucket-nav-left,.bucket-nav-right{display:flex;gap:24px;font-size:10px;letter-spacing:0.18em;color:rgba(30,26,20,0.45);text-transform:uppercase;font-weight:300;align-items:center;}
@@ -184,8 +172,7 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
 .bucket-progress-fill{height:100%;background:#c0392b;border-radius:2px;transition:width 0.5s ease;width:0%;}
 .bucket-progress-label{font-size:8px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(30,26,20,0.35);margin-top:5px;}
 .bucket-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:20px 16px;}
-/* Polaroid card */
-.bk-card{cursor:pointer;user-select:none;}
+.bk-card{user-select:none;}
 .bk-polaroid{background:#fff;padding:8px 8px 0;box-shadow:2px 2px 10px rgba(0,0,0,0.12),0 0 0 0.5px rgba(0,0,0,0.06);transition:transform 0.25s,box-shadow 0.25s;}
 .bk-card:hover .bk-polaroid{transform:translateY(-3px) rotate(0.5deg);box-shadow:4px 8px 20px rgba(0,0,0,0.16);}
 .bk-photo{width:100%;aspect-ratio:1/1;overflow:hidden;}
@@ -199,6 +186,8 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
 .bk-card.done .bk-cb-tick{opacity:1;}
 .bk-label{font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:rgba(30,26,20,0.55);line-height:1.45;font-family:'Inter',sans-serif;transition:color 0.3s;}
 .bk-card.done .bk-label{color:#1e1a14;}
+
+/* VISITED */
 #visited-page{background:#ffffff;overflow-y:auto;overflow-x:hidden;}
 .visited-nav{position:sticky;top:0;z-index:20;background:#ffffff;border-bottom:0.5px solid rgba(0,0,0,0.08);display:flex;justify-content:space-between;align-items:center;padding:18px 36px;}
 .visited-nav-left,.visited-nav-right{display:flex;gap:24px;font-size:10px;letter-spacing:0.18em;color:rgba(30,26,20,0.45);text-transform:uppercase;font-weight:300;align-items:center;}
@@ -206,23 +195,17 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
 .visited-nav span:hover{color:rgba(30,26,20,0.85);}
 .v-nav-add{width:24px;height:24px;border:1px solid rgba(30,26,20,0.25);border-radius:50%;display:none;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s;color:rgba(30,26,20,0.4);font-size:15px;line-height:1;}
 .v-nav-add:hover{border-color:rgba(30,26,20,0.6);color:rgba(30,26,20,0.8);}
-
-/* Paper plane header */
 .plane-header{width:100%;height:260px;position:relative;overflow:hidden;background:transparent;}
 .plane-header svg{width:100%;height:100%;}
-
-/* Stats bar */
 .v-stats-bar{display:flex;gap:0;border-top:0.5px solid rgba(0,0,0,0.08);border-bottom:0.5px solid rgba(0,0,0,0.08);background:#f8f8f8;}
 .v-stat{flex:1;padding:20px 24px;text-align:center;border-right:0.5px solid rgba(0,0,0,0.08);}
 .v-stat:last-child{border-right:none;}
 .v-stat-num{font-family:'Montserrat',sans-serif;font-weight:900;font-size:32px;color:#1e1a14;letter-spacing:-0.03em;}
 .v-stat-label{font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(30,26,20,0.4);margin-top:4px;font-weight:300;}
-
-/* Country list */
 .country-section{padding:32px 36px 60px;}
 .country-section-title{font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(30,26,20,0.35);font-weight:300;margin-bottom:16px;padding-bottom:8px;border-bottom:0.5px solid rgba(0,0,0,0.1);}
 .country-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:0;}
-.country-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:0.5px solid rgba(0,0,0,0.06);cursor:pointer;transition:background 0.15s;}
+.country-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:0.5px solid rgba(0,0,0,0.06);transition:background 0.15s;}
 .country-item:hover{background:rgba(0,0,0,0.03);}
 .country-cb{width:14px;height:14px;border:1px solid rgba(30,26,20,0.25);border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s;}
 .country-cb.checked{background:#1e1a14;border-color:#1e1a14;}
@@ -233,14 +216,11 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
 </head>
 <body>
 
-<!-- ══ HOME PAGE ══ -->
+<!-- HOME PAGE -->
 <div class="page hero" id="home-page">
   <div class="bg-base"></div><div class="bg-photo"></div>
-  <div class="light-sage"></div>
-  <div class="light-amber"></div>
-  <div class="grain"></div>
-  <div class="scanlines"></div>
-
+  <div class="light-sage"></div><div class="light-amber"></div>
+  <div class="grain"></div><div class="scanlines"></div>
   <nav class="nav">
     <div class="nav-left">
       <span onclick="showPage('home')">Home</span>
@@ -249,20 +229,17 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
       <span onclick="showPage('bucket')">The Bucket List</span>
     </div>
     <div class="nav-right">
-      <div class="nav-add" id="home-add-btn" style="display:none" onclick="openModal()" title="Add entry">+</div>
+      <div class="nav-add" id="home-add-btn" style="display:none" onclick="openModal()">+</div>
       <button class="login-btn" id="home-login-btn" onclick="openLogin()" title="Login">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
       </button>
     </div>
   </nav>
-  <div class="title-block"
-
   <div class="title-block" role="heading" aria-level="1" aria-label="Wanderlust">
     <span class="word-wander">Wander</span>
     <span class="word-lust">lust</span>
   </div>
-
-  <div class="stats-row" role="region" aria-label="Travel statistics">
+  <div class="stats-row">
     <div class="stat-item">
       <div class="stat-num" id="countries-num"></div>
       <div class="stat-label">countries<br>travelled</div>
@@ -273,13 +250,12 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
       <div class="stat-label">% of the<br>world covered</div>
     </div>
   </div>
-
   <div class="rule"></div>
   <div class="corner-bl">Intermission:<br>Between Now<br>And Takeoff</div>
   <div class="corner-br">En Route</div>
 </div>
 
-<!-- ══ ITINERARIES PAGE ══ -->
+<!-- ITINERARIES PAGE -->
 <div class="page hidden" id="itineraries-page">
   <nav class="itin-nav">
     <div class="itin-nav-left">
@@ -289,7 +265,7 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
       <span onclick="showPage('bucket')">The Bucket List</span>
     </div>
     <div class="itin-nav-right">
-      <div class="v-nav-add" onclick="openModal()" title="Add entry">+</div>
+      <div class="v-nav-add" id="itin-add-btn" style="display:none" onclick="openModal()">+</div>
     </div>
   </nav>
   <div class="itin-content">
@@ -298,7 +274,7 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
   </div>
 </div>
 
-<!-- ══ LOGIN MODAL ══ -->
+<!-- LOGIN MODAL -->
 <div class="login-overlay" id="login-overlay" onclick="handleLoginOverlay(event)">
   <div class="login-modal">
     <h2>Welcome back</h2>
@@ -311,15 +287,15 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
   </div>
 </div>
 
-<!-- Detail modal (shared) -->
+<!-- DETAIL MODAL -->
 <div class="detail-overlay" id="detail-overlay" onclick="handleDetailOverlay(event)">
-  <div class="detail-modal light" id="detail-modal">
+  <div class="detail-modal" id="detail-modal">
     <button class="detail-close" onclick="closeDetail()">×</button>
     <div id="detail-content"></div>
   </div>
 </div>
 
-<!-- ══ BUCKET LIST PAGE ══ -->
+<!-- BUCKET LIST PAGE -->
 <div class="page hidden" id="bucket-page">
   <nav class="bucket-nav">
     <div class="bucket-nav-left">
@@ -336,14 +312,14 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
       <div class="bucket-subtitle">Things to do before the next takeoff</div>
       <div class="bucket-progress-wrap">
         <div class="bucket-progress-bar"><div class="bucket-progress-fill" id="bk-fill"></div></div>
-        <div class="bucket-progress-label" id="bk-label">0 / 17 completed</div>
+        <div class="bucket-progress-label" id="bk-label">0 / 20 completed</div>
       </div>
     </div>
     <div class="bucket-grid" id="bucket-grid"></div>
   </div>
 </div>
 
-<!-- ══ VISITED PAGE ══ -->
+<!-- VISITED PAGE -->
 <div class="page hidden" id="visited-page">
   <nav class="visited-nav">
     <div class="visited-nav-left">
@@ -354,97 +330,51 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
     </div>
     <div class="visited-nav-right"></div>
   </nav>
-
   <div class="plane-header" id="plane-header">
     <svg id="plane-svg" viewBox="0 0 900 260" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-
-      <!-- Landmark silhouettes scattered "around the world" feel -->
       <g fill="rgba(30,26,20,0.1)">
-        <!-- Big Ben - center-left, tall -->
-        <rect x="210" y="125" width="20" height="75"/>
-        <rect x="208" y="118" width="24" height="8"/>
-        <polygon points="208,118 220,100 232,118"/>
-        <rect x="216" y="130" width="7" height="7" fill="rgba(30,26,20,0.05)"/>
-
-        <!-- Taj Mahal - center, lower/wider -->
-        <rect x="395" y="170" width="50" height="30"/>
-        <path d="M410,170 Q420,148 430,170 Z"/>
-        <rect x="388" y="175" width="12" height="25"/>
-        <rect x="450" y="175" width="12" height="25"/>
-        <polygon points="388,175 394,165 400,175"/>
-        <polygon points="462,175 456,165 450,175"/>
-
-        <!-- Statue of Liberty - center-right, mid -->
-        <rect x="590" y="155" width="10" height="45"/>
-        <rect x="587" y="148" width="16" height="8"/>
+        <rect x="210" y="125" width="20" height="75"/><rect x="208" y="118" width="24" height="8"/>
+        <polygon points="208,118 220,100 232,118"/><rect x="216" y="130" width="7" height="7" fill="rgba(30,26,20,0.05)"/>
+        <rect x="395" y="170" width="50" height="30"/><path d="M410,170 Q420,148 430,170 Z"/>
+        <rect x="388" y="175" width="12" height="25"/><rect x="450" y="175" width="12" height="25"/>
+        <polygon points="388,175 394,165 400,175"/><polygon points="462,175 456,165 450,175"/>
+        <rect x="590" y="155" width="10" height="45"/><rect x="587" y="148" width="16" height="8"/>
         <path d="M589,148 C589,138 601,138 601,148 Z"/>
         <line x1="595" y1="138" x2="593" y2="132" stroke="rgba(30,26,20,0.1)" stroke-width="1.5"/>
         <line x1="595" y1="138" x2="595" y2="131" stroke="rgba(30,26,20,0.1)" stroke-width="1.5"/>
         <line x1="595" y1="138" x2="597" y2="132" stroke="rgba(30,26,20,0.1)" stroke-width="1.5"/>
         <line x1="601" y1="144" x2="608" y2="134" stroke="rgba(30,26,20,0.1)" stroke-width="2"/>
         <circle cx="608" cy="132" r="2.5"/>
-
-        <!-- Burj Khalifa - right, very tall -->
-        <rect x="768" y="200" width="5" height="50" transform="translate(0,-70)"/>
-        <rect x="766" y="200" width="9" height="40" transform="translate(0,-55)"/>
-        <rect x="763" y="200" width="14" height="30" transform="translate(0,-38)"/>
-        <rect x="759" y="200" width="22" height="18" transform="translate(0,-20)"/>
-        <rect x="756" y="200" width="28" height="10" transform="translate(0,-10)"/>
-
-        <!-- Sydney Opera House - far right, low -->
+        <rect x="768" y="130" width="5" height="50"/><rect x="766" y="145" width="9" height="40"/>
+        <rect x="763" y="162" width="14" height="30"/><rect x="759" y="180" width="22" height="18"/>
+        <rect x="756" y="190" width="28" height="10"/>
         <path d="M830,200 Q840,175 855,185 Q860,200 860,200 Z"/>
         <path d="M845,200 Q852,182 862,190 Q866,200 866,200 Z"/>
         <rect x="828" y="197" width="42" height="3"/>
       </g>
-
-      <!-- Path: starts bottom-center, big loop left, smaller loop, sweeps to top-right pin -->
-<g transform="translate(0, 20)">
-  <!-- Path background -->
-  <path id="flight-path"
-    d="M 175,175 C 175,168 310,150 260,125 C 200,96 168,55 188,35 C 202,20 224,24 232,44 C 242,66 228,94 206,100 C 184,106 162,90 168,68 C 174,48 198,43 218,52 C 248,66 268,108 318,95 C 356,84 372,42 410,30 C 446,20 470,42 462,64 C 454,84 432,88 424,72 C 416,56 432,40 452,40 C 488,40 555,72 648,48 C 718,30 788,18 858,14"
-    fill="none" stroke="rgba(30,26,20,0.12)" stroke-width="2.5" stroke-dasharray="8 7"/>
-
-  <!-- Path animation overlay -->
-  <path id="flight-path-draw"
-    d="M 175,175 C 175,168 310,150 260,125 C 200,96 168,55 188,35 C 202,20 224,24 232,44 C 242,66 228,94 206,100 C 184,106 162,90 168,68 C 174,48 198,43 218,52 C 248,66 268,108 318,95 C 356,84 372,42 410,30 C 446,20 470,42 462,64 C 454,84 432,88 424,72 C 416,56 432,40 452,40 C 488,40 555,72 648,48 C 718,30 788,18 858,14"
-    fill="none" stroke="rgba(180,30,30,0.7)" stroke-width="2.5" stroke-dasharray="8 7"/>
-</g>
-
-      <!-- Destination pin at end -->
-      <g transform="translate(860,30)">
+      <path id="flight-path"
+        d="M 30,130 C 80,130 100,120 110,100 C 125,72 120,30 135,18 C 148,8 162,18 160,38 C 158,58 140,70 125,62 C 108,52 112,30 130,24 C 158,16 210,90 280,100 C 340,108 380,60 420,42 C 452,28 472,42 468,64 C 464,84 444,90 432,76 C 420,62 436,46 455,50 C 490,58 560,100 640,78 C 700,62 760,30 820,20 C 850,15 875,18 880,28"
+        fill="none" stroke="rgba(30,26,20,0.15)" stroke-width="2" stroke-dasharray="9 6"/>
+      <path id="flight-path-draw"
+        d="M 30,130 C 80,130 100,120 110,100 C 125,72 120,30 135,18 C 148,8 162,18 160,38 C 158,58 140,70 125,62 C 108,52 112,30 130,24 C 158,16 210,90 280,100 C 340,108 380,60 420,42 C 452,28 472,42 468,64 C 464,84 444,90 432,76 C 420,62 436,46 455,50 C 490,58 560,100 640,78 C 700,62 760,30 820,20 C 850,15 875,18 880,28"
+        fill="none" stroke="rgba(180,30,30,0.7)" stroke-width="2" stroke-dasharray="9 6"/>
+      <g transform="translate(880,28)">
         <path d="M0,-20 C-8,-20 -14,-13 -14,-6 C-14,5 0,20 0,20 C0,20 14,5 14,-6 C14,-13 8,-20 0,-20 Z" fill="#c0392b"/>
         <circle cx="0" cy="-6" r="5" fill="white"/>
       </g>
-
-      <!-- Red paper plane silhouette, nose points right -->
       <g id="paper-plane">
-        <!-- main body upper -->
         <polygon points="20,0 -14,-12 -8,0" fill="#e74c3c"/>
-        <!-- main body lower -->
         <polygon points="20,0 -14,12 -8,0" fill="#c0392b"/>
-        <!-- bottom fold flap -->
         <polygon points="-8,0 -14,12 -4,5" fill="#922b21"/>
-        <!-- crease -->
         <line x1="20" y1="0" x2="-8" y2="0" stroke="#922b21" stroke-width="0.8" opacity="0.7"/>
       </g>
     </svg>
   </div>
-
   <div class="v-stats-bar">
-    <div class="v-stat">
-      <div class="v-stat-num" id="v-countries-num">0</div>
-      <div class="v-stat-label">Countries visited</div>
-    </div>
-    <div class="v-stat">
-      <div class="v-stat-num" id="v-remaining-num">194</div>
-      <div class="v-stat-label">Remaining</div>
-    </div>
-    <div class="v-stat">
-      <div class="v-stat-num" id="v-percent-num">0%</div>
-      <div class="v-stat-label">World covered</div>
-    </div>
+    <div class="v-stat"><div class="v-stat-num" id="v-countries-num">0</div><div class="v-stat-label">Countries visited</div></div>
+    <div class="v-stat"><div class="v-stat-num" id="v-remaining-num">194</div><div class="v-stat-label">Remaining</div></div>
+    <div class="v-stat"><div class="v-stat-num" id="v-percent-num">0%</div><div class="v-stat-label">World covered</div></div>
   </div>
-
   <div class="country-section">
     <div class="country-section-title" id="visited-label">Visited — 0</div>
     <div class="country-grid" id="visited-list"></div>
@@ -453,7 +383,7 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
   </div>
 </div>
 
-<!-- ══ MODAL ══ -->
+<!-- ENTRY MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
   <div class="modal">
     <div class="modal-header">
@@ -475,410 +405,16 @@ html,body{width:100%;height:100%;background:#1a1a14;font-family:'Inter',sans-ser
       <div class="form-field"><label>City</label><input type="text" placeholder="e.g. Lyon"/></div>
       <div class="form-field"><label>Place Name</label><input type="text" placeholder="e.g. Café de Flore"/></div>
       <div class="form-field"><label>Google Maps URL</label><input type="text" placeholder="https://maps.google.com/…"/></div>
-      <div class="form-field"><label>Comments</label><textarea placeholder="Hidden gem — the silk traboules…"></textarea></div>
+      <div class="form-field"><label>Comments</label><textarea placeholder="Hidden gem…"></textarea></div>
       <button class="modal-submit">Save Place</button>
     </div>
   </div>
 </div>
 
 <script>
+// ── CONSTANTS ──
 const COUNTRIES = ["Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi","Cabo Verde","Cambodia","Cameroon","Canada","Central African Republic","Chad","Chile","China","Colombia","Comoros","Congo (Congo-Brazzaville)","Costa Rica","Croatia","Cuba","Cyprus","Czechia","Denmark","Djibouti","Dominica","Dominican Republic","DR Congo","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Eswatini","Ethiopia","Fiji","Finland","France","Gabon","Gambia","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","North Korea","North Macedonia","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russia","Rwanda","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"];
-
 const TOTAL = 194;
-let visited = new Set();
-// entries: [{type:'itinerary'|'place', country, title/placeName, city, body/url, comments}]
-let entries = [];
-
-const POLAROIDS = [
-  {url:'', caption:'Somewhere warm'},
-  {url:'', caption:'Golden hour'},
-  {url:'', caption:'Roads taken'},
-  {url:'', caption:'Far from home'},
-  {url:'', caption:'Worth it'},
-];
-const ROTATIONS = ['-3deg','2deg','-1.5deg','3.5deg','-2.5deg'];
-
-function buildPolaroids(){
-  const strip = document.getElementById('polaroid-strip');
-  strip.innerHTML = '';
-  POLAROIDS.forEach((p,i)=>{
-    const div = document.createElement('div');
-    div.className = 'polaroid';
-    div.style.setProperty('--r', ROTATIONS[i]);
-    div.innerHTML = `<div class="polaroid-img">${p.url?`<img src="${p.url}" alt="${p.caption}"/>`:`<span class="ph">Your photo</span>`}</div><div class="polaroid-caption">${p.caption}</div>`;
-    strip.appendChild(div);
-  });
-}
-
-function updateStats(){
-  const count = visited.size;
-  const pct = Math.round((count/TOTAL)*100);
-  document.getElementById('v-countries-num').textContent = count;
-  document.getElementById('v-remaining-num').textContent = TOTAL - count;
-  document.getElementById('v-percent-num').textContent = pct + '%';
-  document.getElementById('visited-label').textContent = `Visited — ${count}`;
-  document.getElementById('remaining-label').textContent = `Not Yet Visited — ${TOTAL - count}`;
-  document.getElementById('countries-num').textContent = count;
-  const pctEl = document.getElementById('percent-num');
-  if(pctEl) pctEl.textContent = pct;
-}
-
-function buildCountryLists(){
-  const vList = document.getElementById('visited-list');
-  const rList = document.getElementById('remaining-list');
-  vList.innerHTML = ''; rList.innerHTML = '';
-  const vis = COUNTRIES.filter(c=>visited.has(c)).sort();
-  const rem = COUNTRIES.filter(c=>!visited.has(c)).sort();
-  vis.forEach(c => vList.appendChild(makeCountryItem(c, true)));
-  rem.forEach(c => rList.appendChild(makeCountryItem(c, false)));
-  updateStats();
-}
-
-function makeCountryItem(name, isVisited){
-  const div = document.createElement('div');
-  div.className = 'country-item' + (isVisited?' is-visited':'');
-  div.innerHTML = `<div class="country-cb ${isVisited?'checked':''}"></div><span class="country-name">${name}</span>`;
-  div.onclick = async () => {
-    if(!isLoggedIn) return;
-    const adding = !visited.has(name);
-    if(adding) visited.add(name); else visited.delete(name);
-    await saveVisited(name, adding);
-    buildCountryLists();
-  };
-  div.style.cursor = isLoggedIn ? 'pointer' : 'default';
-  return div;
-}
-
-// ── FORMATTING ──
-function formatItineraryBody(raw){
-  if(!raw) return '';
-  const urlRe = /(https?:\/\/[^\s]+)/g;
-  const paras = raw.split(/\n{2,}/);
-  return paras.map(para => {
-    const lines = para.split('\n').map(line => {
-      const trimmed = line.trimStart();
-      const isBold = trimmed.charAt(0) === '*';
-      const text = isBold ? trimmed.slice(1).trimStart() : line;
-      const linked = text.replace(urlRe, url => `<a href="${url}" target="_blank" rel="noopener">${url}</a>`);
-      return isBold ? `<strong>${linked}</strong>` : linked;
-    }).join('<br>');
-    return `<p style="margin-bottom:1em">${lines}</p>`;
-  }).join('');
-}
-
-// ── DETAIL MODAL ──
-function openDetail(html){ document.getElementById('detail-content').innerHTML=html; document.getElementById('detail-overlay').classList.add('open'); }
-function closeDetail(){ document.getElementById('detail-overlay').classList.remove('open'); }
-function handleDetailOverlay(e){ if(e.target===document.getElementById('detail-overlay')) closeDetail(); }
-
-function showItinDetail(e, readOnly=true){
-  const actions = isLoggedIn ? `
-    <div class="detail-actions">
-      <button class="detail-edit-btn" onclick="deleteEntry('${e.id}')" style="color:#c0392b;border-color:rgba(192,57,43,0.4);margin-right:8px">Delete ✕</button>
-      <button class="detail-edit-btn" onclick="showItinDetail(entries.find(x=>x.id==='${e.id}'),false)">Edit ✎</button>
-    </div>` : '';
-  const bodyHtml = readOnly ? `
-    <div class="detail-eyebrow">Itinerary · ${e.country}</div>
-    <div class="detail-title">${e.title||'Untitled'}</div>
-    <div class="detail-divider"></div>
-    <div class="detail-body">${formatItineraryBody(e.body)}</div>
-    ${actions}
-  ` : `
-    <div class="detail-eyebrow">Edit Itinerary · ${e.country}</div>
-    <div class="edit-field"><label>Country</label><input id="edit-country" value="${e.country||''}"/></div>
-    <div class="edit-field"><label>Title</label><input id="edit-title" value="${e.title||''}"/></div>
-    <div class="edit-field"><label>Itinerary</label><textarea id="edit-body">${e.body||''}</textarea></div>
-    <button class="edit-save-btn" onclick="saveItinEdit('${e.id}')">Save Changes</button>
-  `;
-  openDetail(bodyHtml);
-}
-
-async function saveItinEdit(id){
-  const e = entries.find(x=>x.id===id); if(!e) return;
-  e.country = document.getElementById('edit-country').value.trim();
-  e.title   = document.getElementById('edit-title').value.trim();
-  e.body    = document.getElementById('edit-body').value;
-  await updateEntryDB(e);
-  closeDetail(); buildItinerariesPage();
-}
-
-async function savePlaceEdit(id){
-  const e = entries.find(x=>x.id===id); if(!e) return;
-  e.country   = document.getElementById('edit-country').value.trim();
-  e.city      = document.getElementById('edit-city').value.trim();
-  e.placeName = document.getElementById('edit-placeName').value.trim();
-  e.url       = document.getElementById('edit-url').value.trim();
-  e.comments  = document.getElementById('edit-comments').value.trim();
-  await updateEntryDB(e);
-  closeDetail(); buildItinerariesPage();
-}
-
-function showPlaceDetail(e, readOnly=true){
-  const mapLink = e.url ? `<a href="${e.url}" target="_blank" rel="noopener">Open in Google Maps ↗</a>` : '—';
-  const placeActions = isLoggedIn ? `
-    <div class="detail-actions">
-      <button class="detail-edit-btn" onclick="deleteEntry('${e.id}')" style="color:#c0392b;border-color:rgba(192,57,43,0.4);margin-right:8px">Delete ✕</button>
-      <button class="detail-edit-btn" onclick="showPlaceDetail(entries.find(x=>x.id==='${e.id}'),false)">Edit ✎</button>
-    </div>` : '';
-  const bodyHtml = readOnly ? `
-    <div class="detail-eyebrow">Place · ${e.country}</div>
-    <div class="detail-title">${e.placeName||'Unnamed Place'}</div>
-    <div class="detail-meta">${[e.city,e.country].filter(Boolean).join(' · ')}</div>
-    <div class="detail-divider"></div>
-    <div class="detail-field"><div class="detail-field-label">Google Maps</div><div class="detail-field-value detail-body">${mapLink}</div></div>
-    ${e.comments?`<div class="detail-field"><div class="detail-field-label">Comments</div><div class="detail-field-value">${e.comments}</div></div>`:''}
-    ${placeActions}
-  ` : `
-    <div class="detail-eyebrow">Edit Place · ${e.country}</div>
-    <div class="edit-field"><label>Country</label><input id="edit-country" value="${e.country||''}"/></div>
-    <div class="edit-field"><label>City</label><input id="edit-city" value="${e.city||''}"/></div>
-    <div class="edit-field"><label>Place Name</label><input id="edit-placeName" value="${e.placeName||''}"/></div>
-    <div class="edit-field"><label>Google Maps URL</label><input id="edit-url" value="${e.url||''}"/></div>
-    <div class="edit-field"><label>Comments</label><textarea id="edit-comments">${e.comments||''}</textarea></div>
-    <button class="edit-save-btn" onclick="savePlaceEdit('${e.id}')">Save Changes</button>
-  `;
-  openDetail(bodyHtml);
-}
-
-function savePlaceEdit(id){
-  const e = entries.find(x=>x.id===id); if(!e) return;
-  e.country   = document.getElementById('edit-country').value.trim();
-  e.city      = document.getElementById('edit-city').value.trim();
-  e.placeName = document.getElementById('edit-placeName').value.trim();
-  e.url       = document.getElementById('edit-url').value.trim();
-  e.comments  = document.getElementById('edit-comments').value.trim();
-  closeDetail();
-  buildItinerariesPage();
-}
-
-function makePostcardLeft(entryId, type){
-  return `<div class="postcard-left" title="Double-click to upload photo" ondblclick="triggerPhotoUpload('${entryId}')">
-    <span class="pc-type-badge">${type}</span>
-    <img id="pc-img-${entryId}" src="" alt="" style="display:none"/>
-    <div class="pc-upload-hint">
-      <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-      <span>Upload photo</span>
-    </div>
-  </div>`;
-}
-
-// ── SUPABASE ──
-const SUPA_URL = 'https://lwvlmzpsvyeppgpllzvh.supabase.co';
-const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx3dmxtenBzdnllcHBncGxsenZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5NzU1MTIsImV4cCI6MjA5NDU1MTUxMn0.YvlEDB0xlubgO2MYsqBnXwRKYI1wwUqIfox7I2n4KfM';
-const supa = {
-  async query(table, method='GET', body=null, filter=''){
-    const url = `${SUPA_URL}/rest/v1/${table}${filter}`;
-    const res = await fetch(url, {
-      method,
-      headers:{
-        'apikey': SUPA_KEY,
-        'Authorization': `Bearer ${SUPA_KEY}`,
-        'Content-Type': 'application/json',
-        'Prefer': method==='POST' ? 'return=representation' : ''
-      },
-      body: body ? JSON.stringify(body) : null
-    });
-    if(!res.ok){ console.error('Supabase error', await res.text()); return null; }
-    return method==='DELETE'||method==='PATCH' ? null : res.json();
-  },
-  get: (table, filter='') => supa.query(table,'GET',null,filter),
-  post: (table, body) => supa.query(table,'POST',body),
-  patch: (table, body, filter) => supa.query(table,'PATCH',body,filter),
-  del: (table, filter) => supa.query(table,'DELETE',null,filter),
-};
-
-const postcardPhotos = {};
-
-async function loadAllData(){
-  // Visited
-  const vis = await supa.get('travel_visited');
-  if(vis) vis.forEach(r => visited.add(r.country));
-
-  // Entries
-  const ents = await supa.get('travel_entries','?order=created_at.asc');
-  if(ents) ents.forEach(r => entries.push({
-    id: r.id, type: r.type, country: r.country,
-    title: r.title, body: r.body, city: r.city,
-    placeName: r.place_name, url: r.url, comments: r.comments
-  }));
-
-  // Bucket
-  const bk = await supa.get('travel_bucket');
-  if(bk) bk.forEach(r => bucketDone.add(r.item_index));
-
-  // Postcard photos
-  const photos = await supa.get('travel_postcard_photos');
-  if(photos) photos.forEach(r => { postcardPhotos[r.entry_key] = r.data_url; });
-}
-
-async function saveVisited(country, isAdding){
-  if(isAdding) await supa.post('travel_visited', {country});
-  else await supa.del('travel_visited', `?country=eq.${encodeURIComponent(country)}`);
-}
-
-async function saveEntryDB(entry){
-  await supa.post('travel_entries', {
-    id: entry.id, type: entry.type, country: entry.country,
-    title: entry.title||null, body: entry.body||null,
-    city: entry.city||null, place_name: entry.placeName||null,
-    url: entry.url||null, comments: entry.comments||null
-  });
-}
-
-// 1. Updated Database Function (Added return so the code waits properly)
-async function deleteEntryDB(id){
-  return await supa.del('travel_entries', `?id=eq.${id}`);
-}
-
-// 2. Updated Handler (No pop-up, properly awaits the database)
-async function deleteEntry(id) {
-  try {
-    // Wait completely for the database to remove it
-    await deleteEntryDB(id);
-    
-    // Refresh the page to show the updated list
-    location.reload(); 
-    
-  } catch (error) {
-    console.error("Failed to delete entry:", error);
-    alert("Could not delete entry. Please check your console logs.");
-  }
-}
-
-
-async function updateEntryDB(entry){
-  await supa.patch('travel_entries', {
-    country: entry.country, title: entry.title||null, body: entry.body||null,
-    city: entry.city||null, place_name: entry.placeName||null,
-    url: entry.url||null, comments: entry.comments||null
-  }, `?id=eq.${entry.id}`);
-}
-
-async function saveBucket(index, isAdding){
-  if(isAdding) await supa.post('travel_bucket', {item_index: index});
-  else await supa.del('travel_bucket', `?item_index=eq.${index}`);
-}
-
-async function savePostcardPhoto(entryKey, dataUrl){
-  await supa.del('travel_postcard_photos', `?entry_key=eq.${encodeURIComponent(entryKey)}`);
-  await supa.post('travel_postcard_photos', {entry_key: entryKey, data_url: dataUrl});
-}
-function buildItinerariesPage(){
-  const list = document.getElementById('itin-list');
-  list.innerHTML = '';
-  if(!entries.length){
-    list.innerHTML = `<div class="itin-empty">No entries yet — use + to add itineraries or places</div>`;
-    return;
-  }
-  const byCountry = {};
-  entries.forEach(e => { if(!byCountry[e.country]) byCountry[e.country]=[]; byCountry[e.country].push(e); });
-  Object.keys(byCountry).sort().forEach(country => {
-    const grp = byCountry[country];
-    const itins = grp.filter(e=>e.type==='itinerary');
-    const places = grp.filter(e=>e.type==='place');
-    const wrapper = document.createElement('div'); wrapper.className='country-group';
-    const header = document.createElement('div'); header.className='country-group-header';
-    header.innerHTML=`<div class="country-group-name">${country}</div><div class="country-group-meta">${itins.length?`<span>${itins.length} itinerar${itins.length>1?'ies':'y'}</span>`:''}${places.length?`<span>${places.length} place${places.length>1?'s':''}</span>`:''}</div>`;
-    const body = document.createElement('div'); body.className='country-group-entries';
-    if(itins.length) body.appendChild(makeItinCard(country, itins));
-    if(places.length) body.appendChild(makePlacesCard(country, places));
-    header.onclick = ()=>body.classList.toggle('open');
-    wrapper.appendChild(header); wrapper.appendChild(body); list.appendChild(wrapper);
-  });
-  // Restore persisted photos
-  Object.keys(postcardPhotos).forEach(id => applyPostcardPhoto(id, postcardPhotos[id]));
-}
-
-function makeItinCard(country, itins){
-  const card = document.createElement('div'); card.className='postcard';
-  const itemsHtml = itins.map(e=>`<div class="pc-itin-item" data-id="${e.id}">${e.title||'Untitled'}</div>`).join('');
-  card.innerHTML=`
-    ${makePostcardLeft(country+'-itin', 'Itinerary')}
-    <div class="postcard-right">
-      <div>
-        <div class="pc-eyebrow">The</div>
-        <div class="pc-title">${country}</div>
-        <div class="pc-divider"><span class="pc-divider-label">Itinerary</span><span class="pc-divider-line"></span><span class="pc-divider-label">Journal</span></div>
-        <div class="pc-itin-list">${itemsHtml}</div>
-      </div>
-    </div>`;
-  card.querySelectorAll('.pc-itin-item').forEach(el=>{
-    el.onclick=()=>{ const e=entries.find(x=>x.id===el.dataset.id); if(e) showItinDetail(e); };
-  });
-  return card;
-}
-
-function makePlacesCard(country, places){
-  const card = document.createElement('div'); card.className='postcard';
-  // group by city then sort place names
-  const byCity = {};
-  places.forEach(p=>{ const c=p.city||'Other'; if(!byCity[c]) byCity[c]=[]; byCity[c].push(p); });
-  const cityHtml = Object.keys(byCity).sort().map(city=>{
-    const sorted = byCity[city].slice().sort((a,b)=>(a.placeName||'').localeCompare(b.placeName||''));
-    const items = sorted.map(p=>`<div class="pc-place-item" data-id="${p.id}"><span class="pc-place-item-left">${p.placeName||'Unnamed'}</span>${p.url?`<a class="pc-map-link" href="${p.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Map ↗</a>`:''}</div>`).join('');
-    return `<div class="pc-city-group"><div class="pc-city-label">${city}</div>${items}</div>`;
-  }).join('');
-  card.innerHTML=`
-    ${makePostcardLeft(country+'-places', 'Places')}
-    <div class="postcard-right">
-      <div>
-        <div class="pc-eyebrow">Saved in</div>
-        <div class="pc-title">${country}</div>
-        <div class="pc-divider"><span class="pc-divider-label">Places</span><span class="pc-divider-line"></span><span class="pc-divider-label">Stories</span></div>
-        <div class="pc-places-list">${cityHtml}</div>
-      </div>
-    </div>`;
-  card.querySelectorAll('.pc-place-item').forEach(el=>{
-    el.onclick=()=>{ const e=entries.find(x=>x.id===el.dataset.id); if(e) showPlaceDetail(e); };
-  });
-  return card;
-}
-
-// ── AUTH ──
-const PASSWORD = 'micheeex8888';
-let isLoggedIn = false;
-
-function openLogin(){ document.getElementById('login-overlay').classList.add('open'); setTimeout(()=>document.getElementById('login-pw-input').focus(),100); }
-function closeLogin(){ document.getElementById('login-overlay').classList.remove('open'); document.getElementById('login-pw-input').value=''; document.getElementById('login-error').style.display='none'; }
-function handleLoginOverlay(e){ if(e.target===document.getElementById('login-overlay')) closeLogin(); }
-
-function submitLogin(){
-  const pw = document.getElementById('login-pw-input').value;
-  if(pw === PASSWORD){
-    isLoggedIn = true;
-    closeLogin();
-    updateAuthUI();
-  } else {
-    document.getElementById('login-error').style.display='block';
-  }
-}
-
-function logout(){
-  isLoggedIn = false;
-  updateAuthUI();
-}
-
-function updateAuthUI(){
-  // Home login btn
-  const ICON_LOCK = `<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>`;
-  const ICON_UNLOCK = `<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/><line x1="18" y1="2" x2="22" y2="6"/><line x1="22" y1="2" x2="18" y2="6"/></svg>`;
-  const hBtn = document.getElementById('home-login-btn');
-  if(hBtn){
-    hBtn.innerHTML = isLoggedIn ? ICON_UNLOCK : ICON_LOCK;
-    hBtn.title = isLoggedIn ? 'Logout' : 'Login';
-    hBtn.onclick = isLoggedIn ? logout : openLogin;
-    hBtn.classList.toggle('logged-in', isLoggedIn);
-  }
-  // + buttons — only visible when logged in
-  const homeAdd = document.getElementById('home-add-btn');
-  if(homeAdd) homeAdd.style.display = isLoggedIn ? 'flex' : 'none';
-  const itinAdd = document.getElementById('itin-add-btn');
-  if(itinAdd) itinAdd.style.display = isLoggedIn ? 'flex' : 'none';
-  // Rebuild visible pages to apply read-only state
-  if(!document.getElementById('visited-page').classList.contains('hidden')) buildCountryLists();
-  if(!document.getElementById('itineraries-page').classList.contains('hidden')) buildItinerariesPage();
-  if(!document.getElementById('bucket-page').classList.contains('hidden')) buildBucketGrid();
-}
 const BUCKET_ITEMS = [
   {label:"New Year's Eve fireworks in Australia", url:"https://images.unsplash.com/photo-1584241302615-63067a53605d?q=80&w=2330&auto=format&fit=crop"},
   {label:"Cherry blossoms in Japan", url:"https://images.unsplash.com/photo-1557409518-691ebcd96038?q=80&w=2340&auto=format&fit=crop"},
@@ -899,105 +435,346 @@ const BUCKET_ITEMS = [
   {label:"Salar De Uyuni in Bolivia", url:"https://images.unsplash.com/photo-1604688966134-abedc895299f?q=80&w=1335&auto=format&fit=crop"},
   {label:"The Waves of Arizona", url:"https://images.unsplash.com/photo-1565276386516-da2232e7d49e?q=80&w=2146&auto=format&fit=crop"},
   {label:"The Northern Lights in Iceland", url:"https://images.unsplash.com/photo-1580671576132-bb0be268f939?q=80&w=2340&auto=format&fit=crop"},
-  {label:"Cruise in Antartica", url:"https://images.unsplash.com/photo-1650103481454-23c519f01549?q=80&w=2340&auto=format&fit=crop"},
+  {label:"Cruise in Antarctica", url:"https://images.unsplash.com/photo-1650103481454-23c519f01549?q=80&w=2340&auto=format&fit=crop"},
 ];
-let bucketDone = new Set();
 
-function buildBucketGrid(){
-  const grid = document.getElementById('bucket-grid');
-  grid.innerHTML = '';
-  BUCKET_ITEMS.forEach((item, i) => {
-    const card = document.createElement('div');
-    card.className = 'bk-card' + (bucketDone.has(i) ? ' done' : '');
-    card.innerHTML = `
-      <div class="bk-polaroid">
-        <div class="bk-photo"><img src="${item.url}" alt="${item.label}" loading="lazy"/></div>
-        <div class="bk-footer">
-          <div class="bk-cb"><div class="bk-cb-tick"></div></div>
-          <div class="bk-label">${item.label}</div>
-        </div>
-      </div>`;
-    card.onclick = async () => {
-      if(!isLoggedIn) return;
-      const adding = !bucketDone.has(i);
-      if(adding) bucketDone.add(i); else bucketDone.delete(i);
-      await saveBucket(i, adding);
-      updateBucketProgress();
-      buildBucketGrid();
+// ── STATE ──
+let visited = new Set();
+let entries = [];
+let bucketDone = new Set();
+const postcardPhotos = {};
+let isLoggedIn = false;
+
+// ── SUPABASE ──
+const SUPA_URL = 'https://lwvlmzpsvyeppgpllzvh.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx3dmxtenBzdnllcHBncGxsenZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5NzU1MTIsImV4cCI6MjA5NDU1MTUxMn0.YvlEDB0xlubgO2MYsqBnXwRKYI1wwUqIfox7I2n4KfM';
+const supa = {
+  async query(table, method='GET', body=null, filter=''){
+    const res = await fetch(`${SUPA_URL}/rest/v1/${table}${filter}`, {
+      method,
+      headers:{'apikey':SUPA_KEY,'Authorization':`Bearer ${SUPA_KEY}`,'Content-Type':'application/json','Prefer':method==='POST'?'return=representation':''},
+      body: body ? JSON.stringify(body) : null
+    });
+    if(!res.ok){ console.error('Supabase error', await res.text()); return null; }
+    return (method==='DELETE'||method==='PATCH') ? null : res.json();
+  },
+  get:(t,f='')=>supa.query(t,'GET',null,f),
+  post:(t,b)=>supa.query(t,'POST',b),
+  patch:(t,b,f)=>supa.query(t,'PATCH',b,f),
+  del:(t,f)=>supa.query(t,'DELETE',null,f),
+};
+
+async function loadAllData(){
+  const [vis, ents, bk, photos] = await Promise.all([
+    supa.get('travel_visited'),
+    supa.get('travel_entries','?order=created_at.asc'),
+    supa.get('travel_bucket'),
+    supa.get('travel_postcard_photos'),
+  ]);
+  if(vis) vis.forEach(r=>visited.add(r.country));
+  if(ents) ents.forEach(r=>entries.push({id:r.id,type:r.type,country:r.country,title:r.title,body:r.body,city:r.city,placeName:r.place_name,url:r.url,comments:r.comments}));
+  if(bk) bk.forEach(r=>bucketDone.add(r.item_index));
+  if(photos) photos.forEach(r=>{postcardPhotos[r.entry_key]=r.data_url;});
+}
+async function saveVisited(country,adding){ adding?await supa.post('travel_visited',{country}):await supa.del('travel_visited',`?country=eq.${encodeURIComponent(country)}`); }
+async function saveEntryDB(e){ await supa.post('travel_entries',{id:e.id,type:e.type,country:e.country,title:e.title||null,body:e.body||null,city:e.city||null,place_name:e.placeName||null,url:e.url||null,comments:e.comments||null}); }
+async function deleteEntryDB(id){ await supa.del('travel_entries',`?id=eq.${id}`); }
+async function updateEntryDB(e){ await supa.patch('travel_entries',{country:e.country,title:e.title||null,body:e.body||null,city:e.city||null,place_name:e.placeName||null,url:e.url||null,comments:e.comments||null},`?id=eq.${e.id}`); }
+async function saveBucket(i,adding){ adding?await supa.post('travel_bucket',{item_index:i}):await supa.del('travel_bucket',`?item_index=eq.${i}`); }
+async function savePostcardPhoto(key,dataUrl){ await supa.del('travel_postcard_photos',`?entry_key=eq.${encodeURIComponent(key)}`); await supa.post('travel_postcard_photos',{entry_key:key,data_url:dataUrl}); }
+
+// ── AUTH ──
+const PASSWORD = 'micheeex8888';
+function openLogin(){ document.getElementById('login-overlay').classList.add('open'); setTimeout(()=>document.getElementById('login-pw-input').focus(),100); }
+function closeLogin(){ document.getElementById('login-overlay').classList.remove('open'); document.getElementById('login-pw-input').value=''; document.getElementById('login-error').style.display='none'; }
+function handleLoginOverlay(e){ if(e.target===document.getElementById('login-overlay')) closeLogin(); }
+function submitLogin(){
+  if(document.getElementById('login-pw-input').value===PASSWORD){ isLoggedIn=true; closeLogin(); updateAuthUI(); }
+  else document.getElementById('login-error').style.display='block';
+}
+function logout(){ isLoggedIn=false; updateAuthUI(); }
+function updateAuthUI(){
+  const ICON_LOCK=`<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>`;
+  const ICON_OUT=`<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/><line x1="18" y1="2" x2="22" y2="6"/><line x1="22" y1="2" x2="18" y2="6"/></svg>`;
+  const hBtn=document.getElementById('home-login-btn');
+  if(hBtn){hBtn.innerHTML=isLoggedIn?ICON_OUT:ICON_LOCK;hBtn.title=isLoggedIn?'Logout':'Login';hBtn.onclick=isLoggedIn?logout:openLogin;hBtn.classList.toggle('logged-in',isLoggedIn);}
+  const homeAdd=document.getElementById('home-add-btn');
+  if(homeAdd) homeAdd.style.display=isLoggedIn?'flex':'none';
+  const itinAdd=document.getElementById('itin-add-btn');
+  if(itinAdd) itinAdd.style.display=isLoggedIn?'flex':'none';
+  if(!document.getElementById('visited-page').classList.contains('hidden')) buildCountryLists();
+  if(!document.getElementById('itineraries-page').classList.contains('hidden')) buildItinerariesPage();
+  if(!document.getElementById('bucket-page').classList.contains('hidden')) buildBucketGrid();
+}
+
+// ── STATS ──
+function updateStats(){
+  const count=visited.size, pct=Math.round((count/TOTAL)*100);
+  document.getElementById('v-countries-num').textContent=count;
+  document.getElementById('v-remaining-num').textContent=TOTAL-count;
+  document.getElementById('v-percent-num').textContent=pct+'%';
+  document.getElementById('visited-label').textContent=`Visited — ${count}`;
+  document.getElementById('remaining-label').textContent=`Not Yet Visited — ${TOTAL-count}`;
+  document.getElementById('countries-num').textContent=count;
+  const pEl=document.getElementById('percent-num'); if(pEl) pEl.textContent=pct;
+}
+
+// ── COUNTRIES ──
+function buildCountryLists(){
+  const vList=document.getElementById('visited-list'), rList=document.getElementById('remaining-list');
+  vList.innerHTML=''; rList.innerHTML='';
+  COUNTRIES.filter(c=>visited.has(c)).sort().forEach(c=>vList.appendChild(makeCountryItem(c,true)));
+  COUNTRIES.filter(c=>!visited.has(c)).sort().forEach(c=>rList.appendChild(makeCountryItem(c,false)));
+  updateStats();
+}
+function makeCountryItem(name,isVisited){
+  const div=document.createElement('div');
+  div.className='country-item'+(isVisited?' is-visited':'');
+  div.innerHTML=`<div class="country-cb ${isVisited?'checked':''}"></div><span class="country-name">${name}</span>`;
+  div.style.cursor=isLoggedIn?'pointer':'default';
+  div.onclick=async()=>{
+    if(!isLoggedIn) return;
+    const adding=!visited.has(name);
+    adding?visited.add(name):visited.delete(name);
+    await saveVisited(name,adding);
+    buildCountryLists();
+  };
+  return div;
+}
+
+// ── FORMAT ──
+function formatItineraryBody(raw){
+  if(!raw) return '';
+  const urlRe=/(https?:\/\/[^\s]+)/g;
+  return raw.split(/\n{2,}/).map(para=>{
+    const lines=para.split('\n').map(line=>{
+      const t=line.trimStart(), bold=t.charAt(0)==='*';
+      const text=bold?t.slice(1).trimStart():line;
+      const linked=text.replace(urlRe,url=>`<a href="${url}" target="_blank" rel="noopener">${url}</a>`);
+      return bold?`<strong>${linked}</strong>`:linked;
+    }).join('<br>');
+    return `<p style="margin-bottom:1em">${lines}</p>`;
+  }).join('');
+}
+
+// ── DETAIL MODAL ──
+function openDetail(html){ document.getElementById('detail-content').innerHTML=html; document.getElementById('detail-overlay').classList.add('open'); }
+function closeDetail(){ document.getElementById('detail-overlay').classList.remove('open'); }
+function handleDetailOverlay(e){ if(e.target===document.getElementById('detail-overlay')) closeDetail(); }
+
+function showItinDetail(e,readOnly=true){
+  const actions=isLoggedIn?`<div class="detail-actions"><button class="detail-edit-btn" onclick="deleteEntry('${e.id}')" style="color:#c0392b;border-color:rgba(192,57,43,0.4);margin-right:8px">Delete ✕</button><button class="detail-edit-btn" onclick="showItinDetail(entries.find(x=>x.id==='${e.id}'),false)">Edit ✎</button></div>`:'';
+  openDetail(readOnly?`
+    <div class="detail-eyebrow">Itinerary · ${e.country}</div>
+    <div class="detail-title">${e.title||'Untitled'}</div>
+    <div class="detail-divider"></div>
+    <div class="detail-body">${formatItineraryBody(e.body)}</div>
+    ${actions}`:`
+    <div class="detail-eyebrow">Edit Itinerary · ${e.country}</div>
+    <div class="edit-field"><label>Country</label><input id="edit-country" value="${e.country||''}"/></div>
+    <div class="edit-field"><label>Title</label><input id="edit-title" value="${e.title||''}"/></div>
+    <div class="edit-field"><label>Itinerary</label><textarea id="edit-body">${e.body||''}</textarea></div>
+    <button class="edit-save-btn" onclick="saveItinEdit('${e.id}')">Save Changes</button>`);
+}
+function showPlaceDetail(e,readOnly=true){
+  const mapLink=e.url?`<a href="${e.url}" target="_blank" rel="noopener">Open in Google Maps ↗</a>`:'—';
+  const actions=isLoggedIn?`<div class="detail-actions"><button class="detail-edit-btn" onclick="deleteEntry('${e.id}')" style="color:#c0392b;border-color:rgba(192,57,43,0.4);margin-right:8px">Delete ✕</button><button class="detail-edit-btn" onclick="showPlaceDetail(entries.find(x=>x.id==='${e.id}'),false)">Edit ✎</button></div>`:'';
+  openDetail(readOnly?`
+    <div class="detail-eyebrow">Place · ${e.country}</div>
+    <div class="detail-title">${e.placeName||'Unnamed Place'}</div>
+    <div class="detail-meta">${[e.city,e.country].filter(Boolean).join(' · ')}</div>
+    <div class="detail-divider"></div>
+    <div class="detail-field"><div class="detail-field-label">Google Maps</div><div class="detail-field-value detail-body">${mapLink}</div></div>
+    ${e.comments?`<div class="detail-field"><div class="detail-field-label">Comments</div><div class="detail-field-value">${e.comments}</div></div>`:''}
+    ${actions}`:`
+    <div class="detail-eyebrow">Edit Place · ${e.country}</div>
+    <div class="edit-field"><label>Country</label><input id="edit-country" value="${e.country||''}"/></div>
+    <div class="edit-field"><label>City</label><input id="edit-city" value="${e.city||''}"/></div>
+    <div class="edit-field"><label>Place Name</label><input id="edit-placeName" value="${e.placeName||''}"/></div>
+    <div class="edit-field"><label>Google Maps URL</label><input id="edit-url" value="${e.url||''}"/></div>
+    <div class="edit-field"><label>Comments</label><textarea id="edit-comments">${e.comments||''}</textarea></div>
+    <button class="edit-save-btn" onclick="savePlaceEdit('${e.id}')">Save Changes</button>`);
+}
+async function saveItinEdit(id){
+  const e=entries.find(x=>x.id===id); if(!e) return;
+  e.country=document.getElementById('edit-country').value.trim();
+  e.title=document.getElementById('edit-title').value.trim();
+  e.body=document.getElementById('edit-body').value;
+  await updateEntryDB(e); closeDetail(); buildItinerariesPage();
+}
+async function savePlaceEdit(id){
+  const e=entries.find(x=>x.id===id); if(!e) return;
+  e.country=document.getElementById('edit-country').value.trim();
+  e.city=document.getElementById('edit-city').value.trim();
+  e.placeName=document.getElementById('edit-placeName').value.trim();
+  e.url=document.getElementById('edit-url').value.trim();
+  e.comments=document.getElementById('edit-comments').value.trim();
+  await updateEntryDB(e); closeDetail(); buildItinerariesPage();
+}
+async function deleteEntry(id){
+  if(!confirm('Delete this entry?')) return;
+  await deleteEntryDB(id);
+  entries=entries.filter(x=>x.id!==id);
+  closeDetail(); buildItinerariesPage();
+}
+
+// ── POSTCARD PHOTO UPLOAD ──
+function applyPostcardPhoto(entryId, dataUrl){
+  const img=document.getElementById('pc-img-'+entryId);
+  if(!img) return;
+  img.src=dataUrl; img.style.display='block';
+  img.closest('.postcard-left').style.background='none';
+}
+function triggerPhotoUpload(entryId){
+  const input=document.createElement('input');
+  input.type='file'; input.accept='image/*';
+  input.onchange=e=>{
+    const file=e.target.files[0]; if(!file) return;
+    const reader=new FileReader();
+    reader.onload=async ev=>{
+      const dataUrl=ev.target.result;
+      postcardPhotos[entryId]=dataUrl;
+      await savePostcardPhoto(entryId,dataUrl);
+      applyPostcardPhoto(entryId,dataUrl);
     };
-    card.style.cursor = isLoggedIn ? 'pointer' : 'default';
+    reader.readAsDataURL(file);
+  };
+  input.click();
+}
+function makePostcardLeft(entryId, type){
+  const div=document.createElement('div');
+  div.className='postcard-left';
+  div.title='Double-click to upload photo';
+  div.innerHTML=`
+    <span class="pc-type-badge">${type}</span>
+    <img id="pc-img-${entryId}" src="" alt="" style="display:none"/>
+    <div class="pc-upload-hint">
+      <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      <span>Upload photo</span>
+    </div>`;
+  div.addEventListener('dblclick',()=>triggerPhotoUpload(entryId));
+  if(postcardPhotos[entryId]) setTimeout(()=>applyPostcardPhoto(entryId,postcardPhotos[entryId]),0);
+  return div;
+}
+
+// ── ITINERARIES ──
+function buildItinerariesPage(){
+  const list=document.getElementById('itin-list');
+  list.innerHTML='';
+  if(!entries.length){ list.innerHTML=`<div class="itin-empty">No entries yet — use + to add itineraries or places</div>`; return; }
+  const byCountry={};
+  entries.forEach(e=>{if(!byCountry[e.country])byCountry[e.country]=[];byCountry[e.country].push(e);});
+  Object.keys(byCountry).sort().forEach(country=>{
+    const grp=byCountry[country];
+    const itins=grp.filter(e=>e.type==='itinerary');
+    const places=grp.filter(e=>e.type==='place');
+    const wrapper=document.createElement('div'); wrapper.className='country-group';
+    const header=document.createElement('div'); header.className='country-group-header';
+    header.innerHTML=`<div class="country-group-name">${country}</div><div class="country-group-meta">${itins.length?`<span>${itins.length} itinerar${itins.length>1?'ies':'y'}</span>`:''}${places.length?`<span>${places.length} place${places.length>1?'s':''}</span>`:''}</div>`;
+    const body=document.createElement('div'); body.className='country-group-entries';
+    if(itins.length) body.appendChild(makeItinCard(country,itins));
+    if(places.length) body.appendChild(makePlacesCard(country,places));
+    header.onclick=()=>body.classList.toggle('open');
+    wrapper.appendChild(header); wrapper.appendChild(body); list.appendChild(wrapper);
+  });
+  Object.keys(postcardPhotos).forEach(id=>applyPostcardPhoto(id,postcardPhotos[id]));
+}
+function makeItinCard(country,itins){
+  const card=document.createElement('div'); card.className='postcard';
+  const left=makePostcardLeft(country+'-itin','Itinerary');
+  const right=document.createElement('div'); right.className='postcard-right';
+  right.innerHTML=`<div><div class="pc-eyebrow">The</div><div class="pc-title">${country}</div><div class="pc-divider"><span class="pc-divider-label">Itinerary</span><span class="pc-divider-line"></span><span class="pc-divider-label">Journal</span></div><div class="pc-itin-list">${itins.map(e=>`<div class="pc-itin-item" data-id="${e.id}">${e.title||'Untitled'}</div>`).join('')}</div></div>`;
+  card.appendChild(left); card.appendChild(right);
+  right.querySelectorAll('.pc-itin-item').forEach(el=>{el.onclick=()=>{const e=entries.find(x=>x.id===el.dataset.id);if(e)showItinDetail(e);};});
+  return card;
+}
+function makePlacesCard(country,places){
+  const card=document.createElement('div'); card.className='postcard';
+  const left=makePostcardLeft(country+'-places','Places');
+  const byCity={};
+  places.forEach(p=>{const c=p.city||'Other';if(!byCity[c])byCity[c]=[];byCity[c].push(p);});
+  const cityHtml=Object.keys(byCity).sort().map(city=>{
+    const sorted=byCity[city].slice().sort((a,b)=>(a.placeName||'').localeCompare(b.placeName||''));
+    return `<div class="pc-city-group"><div class="pc-city-label">${city}</div>${sorted.map(p=>`<div class="pc-place-item" data-id="${p.id}"><span class="pc-place-item-left">${p.placeName||'Unnamed'}</span>${p.url?`<a class="pc-map-link" href="${p.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Map ↗</a>`:''}</div>`).join('')}</div>`;
+  }).join('');
+  const right=document.createElement('div'); right.className='postcard-right';
+  right.innerHTML=`<div><div class="pc-eyebrow">Saved in</div><div class="pc-title">${country}</div><div class="pc-divider"><span class="pc-divider-label">Places</span><span class="pc-divider-line"></span><span class="pc-divider-label">Stories</span></div><div class="pc-places-list">${cityHtml}</div></div>`;
+  card.appendChild(left); card.appendChild(right);
+  right.querySelectorAll('.pc-place-item').forEach(el=>{el.onclick=()=>{const e=entries.find(x=>x.id===el.dataset.id);if(e)showPlaceDetail(e);};});
+  return card;
+}
+
+// ── BUCKET ──
+function buildBucketGrid(){
+  const grid=document.getElementById('bucket-grid'); grid.innerHTML='';
+  BUCKET_ITEMS.forEach((item,i)=>{
+    const card=document.createElement('div');
+    card.className='bk-card'+(bucketDone.has(i)?' done':'');
+    card.innerHTML=`<div class="bk-polaroid"><div class="bk-photo"><img src="${item.url}" alt="${item.label}" loading="lazy"/></div><div class="bk-footer"><div class="bk-cb"><div class="bk-cb-tick"></div></div><div class="bk-label">${item.label}</div></div></div>`;
+    card.style.cursor=isLoggedIn?'pointer':'default';
+    card.onclick=async()=>{
+      if(!isLoggedIn) return;
+      const adding=!bucketDone.has(i);
+      adding?bucketDone.add(i):bucketDone.delete(i);
+      await saveBucket(i,adding);
+      updateBucketProgress(); buildBucketGrid();
+    };
     grid.appendChild(card);
   });
   updateBucketProgress();
 }
-
 function updateBucketProgress(){
-  const total = BUCKET_ITEMS.length;
-  const done = bucketDone.size;
-  const pct = Math.round((done/total)*100);
-  document.getElementById('bk-fill').style.width = pct + '%';
-  document.getElementById('bk-label').textContent = `${done} / ${total} completed`;
+  const done=bucketDone.size,total=BUCKET_ITEMS.length;
+  document.getElementById('bk-fill').style.width=Math.round((done/total)*100)+'%';
+  document.getElementById('bk-label').textContent=`${done} / ${total} completed`;
 }
-function buildOdometer(container, finalVal, duration, delay){
-  if(typeof container === 'string') container = document.getElementById(container);
-  container.innerHTML = '';
-  const str = String(finalVal);
-  const digits = str.split('').map(ch=>{
-    const wrap = document.createElement('span'); wrap.className='odo-digit';
-    const reel = document.createElement('span'); reel.className='odo-reel';
+
+// ── ODOMETER ──
+function buildOdometer(container,finalVal,duration,delay){
+  if(typeof container==='string') container=document.getElementById(container);
+  container.innerHTML='';
+  String(finalVal).split('').map(ch=>{
+    const wrap=document.createElement('span'); wrap.className='odo-digit';
+    const reel=document.createElement('span'); reel.className='odo-reel';
     const nums=[];
     for(let i=0;i<20;i++) nums.push(Math.floor(Math.random()*10));
     nums.push(parseInt(ch,10));
     nums.forEach(n=>{const c=document.createElement('span');c.className='odo-char';c.textContent=n;reel.appendChild(c);});
     wrap.appendChild(reel); container.appendChild(wrap);
     return {reel,total:nums.length};
+  }).forEach(({reel,total})=>{
+    setTimeout(()=>{reel.style.transition=`transform ${duration}ms cubic-bezier(0.23,1,0.32,1)`;reel.style.transform=`translateY(-${total-1}em)`;},delay);
   });
-  setTimeout(()=>{
-    digits.forEach(({reel,total})=>{
-      reel.style.transition=`transform ${duration}ms cubic-bezier(0.23,1,0.32,1)`;
-      reel.style.transform=`translateY(-${total-1}em)`;
-    });
-  },delay);
 }
 
-// Pages
+// ── PAGES ──
 function showPage(name){
-  ['home','visited','itineraries','bucket'].forEach(p=>{
-    document.getElementById(p+'-page').classList.toggle('hidden', p!==name);
-  });
+  ['home','visited','itineraries','bucket'].forEach(p=>document.getElementById(p+'-page').classList.toggle('hidden',p!==name));
   if(name==='visited') buildCountryLists();
-  if(name==='itineraries'){
-    buildItinerariesPage();
-    const itinAdd = document.getElementById('itin-add-btn');
-    if(itinAdd) itinAdd.style.display = isLoggedIn ? 'flex' : 'none';
-  }
+  if(name==='itineraries'){ buildItinerariesPage(); const b=document.getElementById('itin-add-btn'); if(b) b.style.display=isLoggedIn?'flex':'none'; }
   if(name==='bucket') buildBucketGrid();
 }
 
-// Modal
+// ── MODAL ──
 function openModal(){ if(!isLoggedIn) return; document.getElementById('modal-overlay').classList.add('open'); }
 function closeModal(){ document.getElementById('modal-overlay').classList.remove('open'); }
 function handleOverlayClick(e){ if(e.target===document.getElementById('modal-overlay')) closeModal(); }
-
 function switchTab(tab){
   document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',['itinerary','places'][i]===tab));
-  document.getElementById('tab-itinerary').classList.toggle('active', tab==='itinerary');
-  document.getElementById('tab-places').classList.toggle('active', tab==='places');
+  document.getElementById('tab-itinerary').classList.toggle('active',tab==='itinerary');
+  document.getElementById('tab-places').classList.toggle('active',tab==='places');
 }
-
-// Save entries
-let entryId = 0;
-document.querySelectorAll('.modal-submit').forEach((btn, i) => {
-  btn.onclick = async () => {
-    const tab = i===0 ? 'itinerary' : 'place';
-    const fields = btn.closest('.tab-panel').querySelectorAll('input,textarea');
-    const e = {id: crypto.randomUUID()};
+document.querySelectorAll('.modal-submit').forEach((btn,i)=>{
+  btn.onclick=async()=>{
+    const tab=i===0?'itinerary':'place';
+    const fields=btn.closest('.tab-panel').querySelectorAll('input,textarea');
+    const e={id:crypto.randomUUID()};
     if(tab==='itinerary'){
-      const [country,title,body] = [...fields].map(f=>f.value.trim());
+      const [country,title,body]=[...fields].map(f=>f.value.trim());
       if(!country) return;
       Object.assign(e,{type:'itinerary',country,title,body});
     } else {
-      const [country,city,placeName,url,comments] = [...fields].map(f=>f.value.trim());
+      const [country,city,placeName,url,comments]=[...fields].map(f=>f.value.trim());
       if(!country) return;
       Object.assign(e,{type:'place',country,city,placeName,url,comments});
     }
@@ -1008,62 +785,37 @@ document.querySelectorAll('.modal-submit').forEach((btn, i) => {
   };
 });
 
-document.querySelectorAll('.nav-left span').forEach(s=>{
-  const t = s.textContent.trim();
-  if(t==='The Guide') s.onclick=()=>showPage('itineraries');
-  if(t==='The Bucket List') s.onclick=()=>showPage('bucket');
-  if(t==='The Footprints'||t==='Visited') s.onclick=()=>showPage('visited');
-});
-
-// Paper plane animation
+// ── PLANE ANIMATION ──
 function initPlaneAnimation(){
-  const svg = document.getElementById('plane-svg');
-  const pathEl = document.getElementById('flight-path');
-  const drawEl = document.getElementById('flight-path-draw');
-  const plane  = document.getElementById('paper-plane');
+  const svg=document.getElementById('plane-svg');
+  const pathEl=document.getElementById('flight-path');
+  const drawEl=document.getElementById('flight-path-draw');
+  const plane=document.getElementById('paper-plane');
   if(!svg||!pathEl||!plane) return;
-
-  // Scale path length to actual rendered SVG width
-  const totalLen = pathEl.getTotalLength();
-  drawEl.style.strokeDasharray = `${totalLen}`;
-  drawEl.style.strokeDashoffset = `${totalLen}`;
-
-  const DURATION = 7000;
-  let start = null;
-
+  const totalLen=pathEl.getTotalLength();
+  drawEl.style.strokeDasharray=`${totalLen}`;
+  drawEl.style.strokeDashoffset=`${totalLen}`;
+  const DURATION=7000; let start=null;
   function step(ts){
-    if(!start) start = ts;
-    const t = ((ts - start) % DURATION) / DURATION; // 0→1 looping
-
-    // Draw the dashed overlay progressively
-    drawEl.style.strokeDashoffset = `${totalLen * (1 - t)}`;
-
-    // Move plane along path
-    const pos = pathEl.getPointAtLength(t * totalLen);
-    const ahead = pathEl.getPointAtLength(Math.min((t + 0.01) * totalLen, totalLen));
-    const angle = Math.atan2(ahead.y - pos.y, ahead.x - pos.x) * 180 / Math.PI;
-
-    // Normalise SVG viewBox coords → actual element coords
-    const vbW = 800, vbH = 160;
-    const rect = svg.getBoundingClientRect();
-    const scaleX = rect.width / vbW;
-    const scaleY = rect.height / vbH;
-    plane.setAttribute('transform', `translate(${pos.x},${pos.y}) rotate(${angle})`);
-
+    if(!start) start=ts;
+    const t=((ts-start)%DURATION)/DURATION;
+    drawEl.style.strokeDashoffset=`${totalLen*(1-t)}`;
+    const pos=pathEl.getPointAtLength(t*totalLen);
+    const ahead=pathEl.getPointAtLength(Math.min((t+0.01)*totalLen,totalLen));
+    plane.setAttribute('transform',`translate(${pos.x},${pos.y}) rotate(${Math.atan2(ahead.y-pos.y,ahead.x-pos.x)*180/Math.PI})`);
     requestAnimationFrame(step);
   }
   requestAnimationFrame(step);
 }
 
-// Init
-loadAllData().then(() => {
+// ── INIT ──
+loadAllData().then(()=>{
   updateAuthUI();
-  const count = visited.size;
-  const pct = Math.round((count/TOTAL)*100);
-  buildOdometer('countries-num', count, 1800, 1600);
-  buildOdometer('percent-num', pct, 1800, 1900);
+  const count=visited.size, pct=Math.round((count/TOTAL)*100);
+  buildOdometer('countries-num',count,1800,1600);
+  buildOdometer('percent-num',pct,1800,1900);
 });
-setTimeout(initPlaneAnimation, 100);
+setTimeout(initPlaneAnimation,100);
 </script>
 </body>
 </html>
